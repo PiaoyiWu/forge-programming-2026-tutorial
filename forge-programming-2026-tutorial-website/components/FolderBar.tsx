@@ -4,7 +4,13 @@ import { useState } from "react";
 
 export default function FolderBar() {
 
-    const fileTreeFormat = {
+    interface FileTreeFormatNode {
+        name: string;
+        type: "file" | "folder";
+        children?: FileTreeFormatNode[];
+    }
+
+    const FileTreeFormatNode: FileTreeFormatNode = {
         name: "robot",
         type: "folder",
         children: [
@@ -57,10 +63,51 @@ export default function FolderBar() {
         ]
     };
 
+    const fatNavLinkAnimationClass = "cursor-pointer text-gray-600 relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-black after:transition-all after:duration-150 hover:after:w-full"
+
+    const fatNavLinkAnimationClassBlue = "cursor-pointer text-blue-800"
+
+
+    function TreeNode({ fileTreeFormatNode } : { fileTreeFormatNode: FileTreeFormatNode }) {
+
+        const [open, setOpen] = useState(true);
+        const toggle = () => setOpen(bool => !bool);
+
+        if (fileTreeFormatNode.type == "file") {
+
+            return (
+                <div>
+                    <span className={fatNavLinkAnimationClass}>{fileTreeFormatNode.name}</span>
+                </div>
+            )
+
+        } else {
+            return (
+                <div>
+                    <div onClick={toggle} className={fatNavLinkAnimationClassBlue}>
+                        <span>{fileTreeFormatNode.name}</span>
+
+                    </div>
+
+                    {open && (
+                        <div className="ml-5 border-l pl-2">
+                            {fileTreeFormatNode.children?.map(child => (<TreeNode key={child.name} fileTreeFormatNode={child}/>))}
+                        </div>
+                    )}
+                </div>
+            )
+        }
+
+        // top ten recursive functions all time
+
+
+
+    }
+
     return (
         <main>
-            <div className="m-5">
-                <h1>files</h1>
+            <div className="p-10 sticky top-10">
+                <TreeNode fileTreeFormatNode={FileTreeFormatNode} />
             </div>
         </main>
     );

@@ -7,7 +7,7 @@ export default function Navbar() {
     // link classname is for hover (same one i used in the past but changed a bit to fit the theme!)
     const fatNavLinkAnimationClass = "relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-black after:transition-all after:duration-250 hover:after:w-full"
     return (
-        <nav className="flex border-b shadow-md">
+        <nav className="sticky top-0 flex border-b shadow-md z-10 bg-white">
             <div className="flex pl-10 p-3">
                 <h1 className="text-2xl font-mono font-bold">4421 FORGE</h1>
             </div>
