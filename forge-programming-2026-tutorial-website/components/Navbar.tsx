@@ -8,15 +8,13 @@ export default function Navbar() {
     const fatNavLinkAnimationClass = "relative after:absolute after:bottom-0 after:left-0 after:h-0.5 after:w-0 after:bg-black after:transition-all after:duration-250 hover:after:w-full"
     return (
         <nav className="flex border-b shadow-md">
-            <div className="flex pl-10 p-3.5 font-bold">
-                <h1>4421 FORGE</h1>
+            <div className="flex pl-10 p-3">
+                <h1 className="text-2xl font-mono font-bold">4421 FORGE</h1>
             </div>
             <div className="ml-auto flex gap-5 pr-10 p-4">
 
             <Link className={fatNavLinkAnimationClass} href="/">HOME</Link>
             <Link className={fatNavLinkAnimationClass} href="/code">CODE</Link>
-            <Link className={fatNavLinkAnimationClass} href="/tools">TOOLS</Link>
-            <Link className={fatNavLinkAnimationClass} href="/electrical">ELECTRICAL</Link>
 
             </div>
         </nav>

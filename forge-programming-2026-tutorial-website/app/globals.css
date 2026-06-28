@@ -1,12 +1,14 @@
+@import url("https://googleapis.com");
 @import "tailwindcss";
+
+@theme {
+  --font-mono: "JetBrains Mono", monospace;
+}
 
 :root {
   --background: #ffffff;
   --foreground: #171717;
 }
-
-
-
 
 body {
   background: var(--background);
