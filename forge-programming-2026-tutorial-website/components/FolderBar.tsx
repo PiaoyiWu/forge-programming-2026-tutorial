@@ -19,16 +19,9 @@ export default function FolderBar() {
                 type: "folder",
                 children: [
                     {name: "autoHoodAngleOffsetCommand.java", type: "file"},
-                    {name: "hamburgerCommand.java", type: "file"},
-                    {name: "IntakeCommand.java", type: "file"},
-                    {name: "OuttakeCommand.java", type: "file"},
                     {name: "PivotDownCommand.java", type: "file"},
                     {name: "PivotUpCommand.java", type: "file"},
-                    {name: "ReverseCassetteCommand.java", type: "file"},
                     {name: "ShootCommand.java", type: "file"},
-                    {name: "StartShakeCommand.java", type: "file"},
-                    {name: "StopIntakeCommand.java", type: "file"},
-                    {name: "StopShakeCommand.java", type: "file"},
                     {name: "StopShooterCommand.java", type: "file"},
                     {name: "TemplateCommand.java", type: "file"},
                     
@@ -58,8 +51,6 @@ export default function FolderBar() {
             {name: "Main.java", type: "file"},
             {name: "Robot.java", type: "file"},
             {name: "RobotContainer.java", type: "file"},
-            {name: "SolveQuartic.java", type: "file"},
-            {name: "Telemetry.java", type: "file"},
         ]
     };
 
