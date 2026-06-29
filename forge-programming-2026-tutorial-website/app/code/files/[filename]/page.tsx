@@ -1,12 +1,15 @@
 import fs from "fs";
 import path from "path";
+import {glob} from "glob";
 import {codeToHtml} from "shiki";
 import FolderBar from "@/components/FolderBar"
 
 export default async function FilePage({params}: {params: Promise<{filename: string}>}) {
     const {filename} = await params;
 
-    const filePath = path.join(process.cwd(), `4421-robot-code-2026/robot/subsystems/${filename}.java`);
+    const findFile = await glob(`4421-robot-code-2026/robot/subsystems/${filename}.java`, {cwd: process.cwd()});
+
+    const filePath = path.join(process.cwd(), findFile[0]);
         const dispFileCode = fs.readFileSync(filePath, "utf-8");
     
         const addTextColors = await codeToHtml(dispFileCode, {lang: "java", theme: "one-light"});
