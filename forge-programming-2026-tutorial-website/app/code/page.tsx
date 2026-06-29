@@ -7,10 +7,10 @@ export default async function CodePage() {
 
     // move this to codeblock.tsx later
 
-    const turretShooterSubsystemPath = path.join(process.cwd(), "4421-robot-code-2026/robot/subsystems/TurretShooterSubsystem.java");
-    const dispTurretShooterSubsystemCode = await fs.readFileSync(turretShooterSubsystemPath, "utf-8");
+    const codePagePath = path.join(process.cwd(), "4421-robot-code-2026/CodePage.java");
+    const dispCode = await fs.readFileSync(codePagePath, "utf-8");
 
-    const addTextColors = await codeToHtml(dispTurretShooterSubsystemCode, {lang: "java", theme: "one-light"});
+    const addTextColors = await codeToHtml(dispCode, {lang: "java", theme: "one-light"});
 
     return (
         <main className="flex flex-col h-screen max-h-screen overflow-hidden">
