@@ -57,7 +57,7 @@ export default async function FilePage({params}: {params: Promise<{filename: str
                             const lineToHTML = toHtml(line);
 
                             return (
-                                <div key={lineNumber} data-lineNumber={lineNumber} className="flex">
+                                <div key={lineNumber} data-linenumber={lineNumber} className="flex whitespace-pre">
                                     <span>{lineNumber}</span>
                                     <span dangerouslySetInnerHTML={{__html: lineToHTML}} />
                                 </div>
