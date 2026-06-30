@@ -56,9 +56,6 @@ export default async function FilePage({params}: {params: Promise<{filename: str
                         {lines.map((line, i) => {
                             const lineNumber = i + 1;
                             const lineToHTML = toHtml(line);
-
-                            console.log(`${filename}.java at ${lineNumber}`);
-
                             return (
                                 <CodeBlock key={lineNumber} lineNumber={lineNumber} lineToHTML={lineToHTML} fileName={filename} />
                             );
