@@ -3,7 +3,8 @@ import path from "path";
 import {glob} from "glob";
 import {codeToHast, codeToHtml} from "shiki";
 import {toHtml} from "hast-util-to-html";
-import FolderBar from "@/components/FolderBar"
+import FolderBar from "@/components/FolderBar";
+import CodeBlock from "@/components/CodeBlock";
 
 export default async function FilePage({params}: {params: Promise<{filename: string}>}) {
     const {filename} = await params;
@@ -56,14 +57,10 @@ export default async function FilePage({params}: {params: Promise<{filename: str
                             const lineNumber = i + 1;
                             const lineToHTML = toHtml(line);
 
+                            console.log(`${filename}.java at ${lineNumber}`);
+
                             return (
-                                <div key={lineNumber} data-linenumber={lineNumber} className="flex whitespace-pre">
-                                    <div className="">
-                                        <button className="text-green-600 cursor-pointer hover:text-2xl transition-all duration-250 pr-2">+</button>
-                                    </div>
-                                    <span className="text-gray-500 pr-2 min-w-8 select-none">{lineNumber}</span>
-                                    <span dangerouslySetInnerHTML={{__html: lineToHTML}} />
-                                </div>
+                                <CodeBlock key={lineNumber} lineNumber={lineNumber} lineToHTML={lineToHTML} fileName={filename} />
                             );
                         })}
                     </div>
