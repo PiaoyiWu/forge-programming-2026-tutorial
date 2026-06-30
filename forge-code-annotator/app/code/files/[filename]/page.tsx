@@ -58,6 +58,9 @@ export default async function FilePage({params}: {params: Promise<{filename: str
 
                             return (
                                 <div key={lineNumber} data-linenumber={lineNumber} className="flex whitespace-pre">
+                                    <div className="">
+                                        <button className="text-green-600 cursor-pointer hover:text-2xl transition-all duration-250 pr-2">+</button>
+                                    </div>
                                     <span className="text-gray-500 pr-2 min-w-8 select-none">{lineNumber}</span>
                                     <span dangerouslySetInnerHTML={{__html: lineToHTML}} />
                                 </div>
