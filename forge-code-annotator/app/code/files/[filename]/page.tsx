@@ -5,6 +5,8 @@ import {codeToHast, codeToHtml} from "shiki";
 import {toHtml} from "hast-util-to-html";
 import FolderBar from "@/components/FolderBar";
 import CodeBlock from "@/components/CodeBlock";
+import SingleLineSingleComment from "@/components/SingleLineSingleComment";
+
 
 export default async function FilePage({params}: {params: Promise<{filename: string}>}) {
     const {filename} = await params;
@@ -38,7 +40,7 @@ export default async function FilePage({params}: {params: Promise<{filename: str
 
         //add a filter right here so that it ignores all the "text: \n" or new lines or wtv
         const lines = codeTag.children.filter((node: any) => (node.type === "element" && node.tagName === "span")) as any[];
-
+        const lineMap = lines.map((line, i) => ({lineNumber: i+1, lineToHTML: toHtml(line),}));
 
         // 0number of lines
         console.log(lines.length);
@@ -53,13 +55,7 @@ export default async function FilePage({params}: {params: Promise<{filename: str
                     </div>
                     
                     <div className="h-full overflow-y-auto border-l border-black bg-[#FAFAFA] text-xs p-10 min-w-0 flex-1 overflow-x-auto [&_pre]:w-max [&_pre]:min-w-full">
-                        {lines.map((line, i) => {
-                            const lineNumber = i + 1;
-                            const lineToHTML = toHtml(line);
-                            return (
-                                <CodeBlock key={lineNumber} lineNumber={lineNumber} lineToHTML={lineToHTML} fileName={filename} />
-                            );
-                        })}
+                        <SingleLineSingleComment lineMap={lineMap} fileName={filename} />
                     </div>
     
                 </div>

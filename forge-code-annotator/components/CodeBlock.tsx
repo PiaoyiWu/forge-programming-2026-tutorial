@@ -2,9 +2,9 @@
 
 import {useState} from "react";
 
-export default function CodeBlock({lineNumber, lineToHTML, fileName}: {lineNumber: number; lineToHTML: string, fileName: string}) {
+export default function CodeBlock({lineNumber, lineToHTML, fileName, isOpen, toggleFunc}: {lineNumber: number; lineToHTML: string, fileName: string, isOpen: boolean, toggleFunc: () => void}) {
 
-    const [comment, changeCommenting] = useState(false);
+    // const [comment, changeCommenting] = useState(false);
 
     function commentLog() {
         console.log(`insert comment in ${fileName}.java at ${lineNumber}`);
@@ -20,16 +20,16 @@ export default function CodeBlock({lineNumber, lineToHTML, fileName}: {lineNumbe
    
         <div key={lineNumber} data-linenumber={lineNumber} className="flex whitespace-pre">
                 <div>
-                    <button onClick={() => {changeCommenting(!comment);commentLog();currentLineOpen(lineNumber);}} className="text-green-600 cursor-pointer hover:text-2xl transition-all duration-250 pr-2">+</button>
+                    <button onClick={() => {toggleFunc();commentLog();currentLineOpen(lineNumber);}} className="text-green-600 cursor-pointer hover:text-2xl transition-all duration-250 pr-2">+</button>
                 </div>
                 <span className="text-gray-500 pr-2 min-w-8 select-none">{lineNumber}</span>
                 <span dangerouslySetInnerHTML={{__html: lineToHTML}} />
             
         </div>
         
-            {comment && (
-                <div className="flex-none ml-8 pt-0 pb-4 animate-[bounce_0.5s_ease-out_1.5_forwards]">
-                <textarea className="p-2 w-full border border-gray-600" placeholder="Comment">
+            {isOpen && (
+                <div className="w-full bg-gray-100 flex-none ml-0 pt-1 pb-4 animate-[bounce_0.25s_linear_0.5_forwards]">
+                <textarea className="p-2 ml-8 w-full border border-gray-600 bg-white" placeholder="Comment">
 
                 </textarea>
                 </div>
